@@ -33,6 +33,11 @@ const homeSearchFunc = async (req: Request, res: Response) => {
                   query:`${keywords}`,
                   fields: ["board_title.nori_discard","board_desc.nori_discard","board_content.nori_discard","game_title"]
                 }},
+            must_not: [{
+              match:{
+                "game_delete_code": 1
+              }
+            }],
             should: [{
                 match:{
                   "board_title.nori_discard": `${keywords}`
